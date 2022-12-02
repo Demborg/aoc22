@@ -30,17 +30,17 @@ const play = (other: number, outcome: number) => {
   return (other % 3) + 1;
 };
 
+const score = (games: number[][]) =>
+  games
+    .map((round) => outcome(round[0], round[1]) + round[1])
+    .reduce((a, b) => a + b);
+
 export const day2 = (input: string): Result => {
   const games = input
     .split("\n")
     .map((round) => round.split(" ").map(shapeScore));
   return [
-    games
-      .map((round) => outcome(round[0], round[1]) + round[1])
-      .reduce((a, b) => a + b),
-    games
-      .map((round) => [round[0], play(round[0], round[1])])
-      .map((round) => outcome(round[0], round[1]) + round[1])
-      .reduce((a, b) => a + b),
+    score(games),
+    score(games.map((round) => [round[0], play(round[0], round[1])])),
   ];
 };
