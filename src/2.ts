@@ -20,6 +20,16 @@ const outcome = (other: number, me: number) => {
   return 0;
 };
 
+const play = (other: number, outcome: number) => {
+  if (outcome === 1) {
+    return ((other + 1) % 3) + 1;
+  }
+  if (outcome === 2) {
+    return other;
+  }
+  return (other % 3) + 1;
+};
+
 export const day2 = (input: string): Result => {
   const games = input
     .split("\n")
@@ -28,6 +38,9 @@ export const day2 = (input: string): Result => {
     games
       .map((round) => outcome(round[0], round[1]) + round[1])
       .reduce((a, b) => a + b),
-    -1,
+    games
+      .map((round) => [round[0], play(round[0], round[1])])
+      .map((round) => outcome(round[0], round[1]) + round[1])
+      .reduce((a, b) => a + b),
   ];
 };
