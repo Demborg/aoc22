@@ -21,9 +21,13 @@ const outcome = (other: number, me: number) => {
 };
 
 export const day2 = (input: string): Result => {
-  const scores = input
+  const games = input
     .split("\n")
-    .map((round) => round.split(" ").map(shapeScore))
-    .map((round) => outcome(round[0], round[1]) + round[1]);
-  return [scores.reduce((a, b) => a + b), -1];
+    .map((round) => round.split(" ").map(shapeScore));
+  return [
+    games
+      .map((round) => outcome(round[0], round[1]) + round[1])
+      .reduce((a, b) => a + b),
+    -1,
+  ];
 };
