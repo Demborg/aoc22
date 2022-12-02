@@ -16,14 +16,7 @@ const Day = (props: {
       {result && (
         <ul>
           {result.map((value) => (
-            <li
-              onClick={() => {
-                alert("copied " + value.toString() + " to clipboard");
-                navigator.clipboard.writeText(value.toString());
-              }}
-            >
-              {value}
-            </li>
+            <li>{value}</li>
           ))}
         </ul>
       )}
