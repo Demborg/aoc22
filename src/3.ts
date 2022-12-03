@@ -14,5 +14,11 @@ export const day3 = (input: string): Result => {
     .map(priority)
     .reduce((a, b) => a + b);
 
-  return [p1, -1];
+  const p2 = [...Array(rugsacks.length / 3).keys()]
+    .map((i) => [rugsacks[3 * i], rugsacks[3 * i + 1], rugsacks[3 * i + 2]])
+    .map((g) => [...g[0]].find((c) => g[1].includes(c) && g[2].includes(c)))
+    .map(priority)
+    .reduce((a, b) => a + b);
+
+  return [p1, p2];
 };
