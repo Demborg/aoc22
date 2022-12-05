@@ -36,6 +36,6 @@ export const day5 = (input: string): Result => {
 
   return [
     data1.map((col) => col[0]).join(""),
-    data2.map((col) => col[0]).join(""),
+    data2.map((col: string[]) => col[0]).join(""),
   ];
 };
