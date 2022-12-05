@@ -14,3 +14,7 @@ move 1 from 1 to 2`
 test("Day 5 part one example", () => {
     expect(day5(input)[0]).toBe("CMZ")
 })
+
+test("Day 5 part two example", () => {
+    expect(day5(input)[1]).toBe("MCD")
+})
