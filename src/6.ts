@@ -13,5 +13,5 @@ const startOfSymbol = (data: string, length: number) => {
 }
 
 export const day6 = (input: string): Result => {
-    return [startOfSymbol(input, 4) ?? -1, -1]
+    return [startOfSymbol(input, 4) ?? -1, startOfSymbol(input, 14) ?? -1]
 }
