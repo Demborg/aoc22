@@ -1,18 +1,17 @@
 import { Result } from "./types";
 
-const startOfPacket = (data: string) => {
-    const buffer =  [...data.slice(0, 3)]
-    for (let i = 3; i < data.length; i++) {
+const startOfSymbol = (data: string, length: number) => {
+    const buffer =  [...data.slice(0, length - 1)]
+    for (let i = length - 1; i < data.length; i++) {
         buffer.push(data[i]);
-        if (new Set(buffer).size == 4) {
+        if (new Set(buffer).size == length) {
             return i + 1
         }
         buffer.shift()
     }
-    return -1
+    return undefined
 }
 
 export const day6 = (input: string): Result => {
-
-    return [startOfPacket(input), -1]
+    return [startOfSymbol(input, 4) ?? -1, -1]
 }
