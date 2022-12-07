@@ -40,11 +40,10 @@ export const day7 = (input: string): Result => {
     }
   });
 
+  const sizes = dirs.map(totalSize);
+
   return [
-    dirs
-      .map(totalSize)
-      .filter((size) => size < 100000)
-      .reduce((a, b) => a + b),
-    -1,
+    sizes.filter((size) => size < 100000).reduce((a, b) => a + b),
+    Math.min(...sizes.filter((size) => size > 30000000 - 70000000 + sizes[0])),
   ];
 };
