@@ -22,7 +22,13 @@ body {
 .TitleDay {
     background-color: #888888;
     display: flex;
-    width: 100%;
     justify-content: space-around;
+    flex-direction: row;
+}
+
+.Result {
+    display: flex;
+    padding-right: 1rem;
+    justify-content: space-between;
     flex-direction: row;
 }

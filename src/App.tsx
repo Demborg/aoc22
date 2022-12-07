@@ -30,14 +30,18 @@ const Day = (props: {
           RUN!
         </button>{" "}
       </div>
-      {time !== undefined && <div>⏱: {time} ms </div>}
-      {result && (
-        <ul>
-          {result.map((value) => (
-            <li>{value}</li>
-          ))}
-        </ul>
-      )}
+      <div className="Result">
+        {result && (
+          <ul>
+            {result
+              .filter((value) => value !== -1)
+              .map((value) => (
+                <li>{value}</li>
+              ))}
+          </ul>
+        )}
+        {time !== undefined && <div>⏱: {time} ms </div>}
+      </div>
     </div>
   );
 };
