@@ -15,9 +15,11 @@ const Day = (props: {
   function: Fn;
 }) => {
   const [result, setResult] = useState<Result>();
+  const [time, setTime] = useState<number>();
   return (
     <div>
       <h2>Day {props.day}</h2>
+      {time !== undefined && <div>⏱: {time} ms </div>}
       {result && (
         <ul>
           {result.map((value) => (
@@ -25,7 +27,13 @@ const Day = (props: {
           ))}
         </ul>
       )}
-      <button onClick={() => setResult(props.function(props.input.current))}>
+      <button
+        onClick={() => {
+          const start = performance.now();
+          setResult(props.function(props.input.current));
+          setTime(performance.now() - start)
+        }}
+      >
         RUN!
       </button>
     </div>
