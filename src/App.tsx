@@ -17,8 +17,19 @@ const Day = (props: {
   const [result, setResult] = useState<Result>();
   const [time, setTime] = useState<number>();
   return (
-    <div>
-      <h2>Day {props.day}</h2>
+    <div className="Day">
+      <div className="TitleDay">
+        <h2>Day {props.day}</h2>
+        <button
+          onClick={() => {
+            const start = performance.now();
+            setResult(props.function(props.input.current));
+            setTime(performance.now() - start);
+          }}
+        >
+          RUN!
+        </button>{" "}
+      </div>
       {time !== undefined && <div>⏱: {time} ms </div>}
       {result && (
         <ul>
@@ -27,15 +38,6 @@ const Day = (props: {
           ))}
         </ul>
       )}
-      <button
-        onClick={() => {
-          const start = performance.now();
-          setResult(props.function(props.input.current));
-          setTime(performance.now() - start)
-        }}
-      >
-        RUN!
-      </button>
     </div>
   );
 };
@@ -43,11 +45,14 @@ const Day = (props: {
 function App() {
   const inputRef = useRef<string>("");
   return (
-    <div>
+    <div className="App">
       <h1>
         <a href="https://adventofcode.com/2022">Advent of code 2022</a>
       </h1>
-      Input: <textarea onChange={(e) => (inputRef.current = e.target.value)} />
+      <div>
+        Input:{" "}
+        <textarea onChange={(e) => (inputRef.current = e.target.value)} />
+      </div>
       <Day input={inputRef} day={7} function={day7} />
       <Day input={inputRef} day={6} function={day6} />
       <Day input={inputRef} day={5} function={day5} />
