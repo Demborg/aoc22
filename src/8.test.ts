@@ -10,3 +10,7 @@ const input = `30373
 test("Day 8 part 1 example", () => {
   expect(day8(input)[0]).toBe(21);
 });
+
+test("Day 8 part 2 example", () => {
+  expect(day8(input)[1]).toBe(8);
+});
