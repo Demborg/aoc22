@@ -8,6 +8,7 @@ import { day4 } from "./4";
 import { day5 } from "./5";
 import { day6 } from "./6";
 import { day7 } from "./7";
+import { day8 } from "./8";
 
 const Day = (props: {
   input: MutableRefObject<string>;
@@ -57,6 +58,7 @@ function App() {
         Input:{" "}
         <textarea onChange={(e) => (inputRef.current = e.target.value)} />
       </div>
+      <Day input={inputRef} day={8} function={day8} />
       <Day input={inputRef} day={7} function={day7} />
       <Day input={inputRef} day={6} function={day6} />
       <Day input={inputRef} day={5} function={day5} />
