@@ -12,7 +12,8 @@ body {
 }
 
 .Day {
-    width: 500px;
+    max-width: 40rem;
+    width: 90%;
     margin: 0.5rem;
     overflow: hidden;
     border-radius: 0.5rem;
