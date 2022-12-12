@@ -10,28 +10,67 @@ import { day6 } from "./6";
 import { day7 } from "./7";
 import { day8 } from "./8";
 
+const functions = new Map<number, Fn>([
+  [1, day1],
+  [2, day2],
+  [3, day3],
+  [4, day4],
+  [5, day5],
+  [6, day6],
+  [7, day7],
+  [8, day8],
+]);
+
 const Day = (props: {
   input: MutableRefObject<string>;
+  setResult: (result: Result) => void;
+  setTime: (time: number) => void;
   day: number;
-  function: Fn;
+  function?: Fn;
 }) => {
+  return (
+    <div className="Day">
+      <button
+        disabled={props.function === undefined}
+        onClick={() => {
+          if (props.function) {
+            const start = performance.now();
+            props.setResult(props.function(props.input.current));
+            props.setTime(performance.now() - start);
+          }
+        }}
+      >
+        {props.day}
+      </button>
+    </div>
+  );
+};
+
+function App() {
+  const inputRef = useRef<string>("");
   const [result, setResult] = useState<Result>();
   const [time, setTime] = useState<number>();
   return (
-    <div className="Day">
-      <div className="TitleDay">
-        <h2>Day {props.day}</h2>
-        <button
-          onClick={() => {
-            const start = performance.now();
-            setResult(props.function(props.input.current));
-            setTime(performance.now() - start);
-          }}
-        >
-          RUN!
-        </button>{" "}
+    <div className="App">
+      <h1>
+        <a href="https://adventofcode.com/2022">Advent of code 2022</a>
+      </h1>
+      <div>
+        <textarea defaultValue={"Input"} onChange={(e) => (inputRef.current = e.target.value)} />
       </div>
-      <div className="Result">
+
+      <div className="Calendar Wide">
+        {Array(25).fill(0).map((_, i) => (
+          <Day
+            input={inputRef}
+            setResult={setResult}
+            setTime={setTime}
+            day={i + 1}
+            function={functions.get(i + 1)}
+          />
+        ))}
+      </div>
+      <div className="Result Wide">
         {result && (
           <ul>
             {result
@@ -43,29 +82,6 @@ const Day = (props: {
         )}
         {time !== undefined && <div>⏱: {time} ms </div>}
       </div>
-    </div>
-  );
-};
-
-function App() {
-  const inputRef = useRef<string>("");
-  return (
-    <div className="App">
-      <h1>
-        <a href="https://adventofcode.com/2022">Advent of code 2022</a>
-      </h1>
-      <div>
-        Input:{" "}
-        <textarea onChange={(e) => (inputRef.current = e.target.value)} />
-      </div>
-      <Day input={inputRef} day={8} function={day8} />
-      <Day input={inputRef} day={7} function={day7} />
-      <Day input={inputRef} day={6} function={day6} />
-      <Day input={inputRef} day={5} function={day5} />
-      <Day input={inputRef} day={4} function={day4} />
-      <Day input={inputRef} day={3} function={day3} />
-      <Day input={inputRef} day={2} function={day2} />
-      <Day input={inputRef} day={1} function={day1} />
     </div>
   );
 }

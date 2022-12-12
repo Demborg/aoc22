@@ -1,6 +1,17 @@
 body {
     margin: 0px;
     background-color: pink;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    margin: 0px;
+}
+
+.Wide {
+    margin-top: 1rem;
+    width: 80%;
+    max-width: 200px;
 }
 
 .App {
@@ -11,20 +22,9 @@ body {
     flex-direction: column;
 }
 
-.Day {
-    max-width: 40rem;
-    width: 90%;
-    margin: 0.5rem;
-    overflow: hidden;
-    border-radius: 0.5rem;
-    background-color: #bbbbbb;
-}
-
-.TitleDay {
-    background-color: #888888;
+.Calendar {
     display: flex;
-    justify-content: space-around;
-    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .Result {
