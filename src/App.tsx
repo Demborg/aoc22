@@ -29,20 +29,19 @@ const Day = (props: {
   function?: Fn;
 }) => {
   return (
-    <div className="Day">
-      <button
-        disabled={props.function === undefined}
-        onClick={() => {
-          if (props.function) {
-            const start = performance.now();
-            props.setResult(props.function(props.input.current));
-            props.setTime(performance.now() - start);
-          }
-        }}
-      >
-        {props.day}
-      </button>
-    </div>
+    <button
+      className="Day"
+      disabled={props.function === undefined}
+      onClick={() => {
+        if (props.function) {
+          const start = performance.now();
+          props.setResult(props.function(props.input.current));
+          props.setTime(performance.now() - start);
+        }
+      }}
+    >
+      {props.day}
+    </button>
   );
 };
 
@@ -53,22 +52,27 @@ function App() {
   return (
     <div className="App">
       <h1>
-        <a href="https://adventofcode.com/2022">Advent of code 2022</a>
+        <a href="https://adventofcode.com/2022" className="Title">Advent of code 2022</a>
       </h1>
       <div>
-        <textarea defaultValue={"Input"} onChange={(e) => (inputRef.current = e.target.value)} />
+        <textarea
+          defaultValue={"Input"}
+          onChange={(e) => (inputRef.current = e.target.value)}
+        />
       </div>
 
       <div className="Calendar Wide">
-        {Array(25).fill(0).map((_, i) => (
-          <Day
-            input={inputRef}
-            setResult={setResult}
-            setTime={setTime}
-            day={i + 1}
-            function={functions.get(i + 1)}
-          />
-        ))}
+        {Array(25)
+          .fill(0)
+          .map((_, i) => (
+            <Day
+              input={inputRef}
+              setResult={setResult}
+              setTime={setTime}
+              day={i + 1}
+              function={functions.get(i + 1)}
+            />
+          ))}
       </div>
       <div className="Result Wide">
         {result && (
@@ -80,7 +84,7 @@ function App() {
               ))}
           </ul>
         )}
-        {time !== undefined && <div>⏱: {time} ms </div>}
+        {time !== undefined && <div>⏱: {Math.round(time)} ms </div>}
       </div>
     </div>
   );

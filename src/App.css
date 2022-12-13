@@ -11,7 +11,7 @@ ul {
 .Wide {
     margin-top: 1rem;
     width: 80%;
-    max-width: 200px;
+    max-width: 250px;
 }
 
 .App {
@@ -22,9 +22,19 @@ ul {
     flex-direction: column;
 }
 
+.Title {
+    color: gray;
+}
+
 .Calendar {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+}
+
+.Day {
+    width: 2rem;
+    margin: 0.1rem;
 }
 
 .Result {
@@ -32,4 +42,5 @@ ul {
     padding-right: 1rem;
     justify-content: space-between;
     flex-direction: row;
+    color: gray;
 }
